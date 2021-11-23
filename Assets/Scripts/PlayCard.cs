@@ -362,6 +362,9 @@ public class PlayCard : MonoBehaviour
 
             ////Logs variable representing the width of a card
             //Debug.Log(card.GetComponent<SpriteRenderer>().bounds.size.x);
+
+            //adding comment for git test
+            //second test
         }
     }
 
