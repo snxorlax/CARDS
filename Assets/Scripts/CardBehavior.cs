@@ -25,7 +25,6 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     public void OnEndDrag(PointerEventData pointerEventData)
     {
-        //Debug.Log("DragEnd");
     }
 
     public void OnDrag(PointerEventData pointerEventData)

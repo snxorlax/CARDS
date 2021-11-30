@@ -30,10 +30,8 @@ public class PlayCard : MonoBehaviour
     public GameObject placementIndicator;
     public GameObject cardTemplate;
 
-    //for shrouded or vanish
-    public Sprite frontCard;
-    public Sprite backCard;
-
+    //will determine whether to summon unit faceup or facedown
+    public bool dragRight;
     private void Start()
     {
         //distance between cards in play
@@ -49,6 +47,19 @@ public class PlayCard : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        
+        if (Input.GetMouseButton(1) == true)
+        {
+            dragRight = true;
+        }
+        else
+        {
+            dragRight = false;
+        }
+        
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         //visual feedback for card about to be played
@@ -72,15 +83,23 @@ public class PlayCard : MonoBehaviour
         Card cardData = collision.gameObject.GetComponent<CardDisplay>().card;
         //card's type will determine which list to use
         string type = cardData.type;
+        List<GameObject> cardList = TypeList(type);
         //final scale of card in play
         Vector3 scale;
-        List<GameObject> cardList = TypeList(type);
 
-        if (cardData.status == "inHand" && Input.GetMouseButton(0) == true)
+        if (cardData.status == "inHand" && (Input.GetMouseButton(0) == true || Input.GetMouseButton(1) == true))
         {
+            if (dragRight == true)
+            {
+                cardData.flipped = true;
+            }    
+            else
+            {
+                cardData.flipped = false;
+            }
             SetIndicator(collision.gameObject, cardList, unitStep);
         }
-        if (collision.CompareTag("PlayerCard") && Input.GetMouseButton(0) == false)
+        if (collision.CompareTag("PlayerCard") && (Input.GetMouseButton(0) == false && Input.GetMouseButton(1) == false ))
         {
             placementIndicator.SetActive(false);
             InsertCard(collision.gameObject, cardData.type, cardList);
@@ -96,6 +115,10 @@ public class PlayCard : MonoBehaviour
             //scales down in play cards according to public variable newScale
             ScaleCard(collision.gameObject);
             //Logs variable representing the width of a card
+            if (cardData.flipped == true)
+            {
+                FlipCard(collision.gameObject);
+            }    
         }
 
     }
