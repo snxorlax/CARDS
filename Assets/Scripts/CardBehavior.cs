@@ -15,17 +15,17 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        Debug.Log("Pointer Down");
+        //Debug.Log("Pointer Down");
     }
     public void OnBeginDrag(PointerEventData pointerEventData)
     {
-        Debug.Log("DragStart");
+        //Debug.Log("DragStart");
         
     }
 
     public void OnEndDrag(PointerEventData pointerEventData)
     {
-        Debug.Log("DragEnd");
+        //Debug.Log("DragEnd");
     }
 
     public void OnDrag(PointerEventData pointerEventData)
