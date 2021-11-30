@@ -13,13 +13,9 @@ public class HandDisplay : MonoBehaviour
     public GameObject gameManager;
     public GameObject card;
 
-    //for shrouded or vanish
-    public Sprite cardFront;
-    public Sprite cardBack;
 
     private void Awake()
     {
-        cardFront = GetComponent<Sprite>();
         gameManager = GameObject.Find("GameManager");
         gameManager.GetComponent<GameManager>().GameStarted += LoadHand;
     }
