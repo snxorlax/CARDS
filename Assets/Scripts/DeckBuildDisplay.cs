@@ -14,11 +14,12 @@ public class DeckBuildDisplay : MonoBehaviour
     public float cardWidth;
     public float cardHeight;
     public int lastRow;
+    public Vector3 newScale;
 
 
     private void Start()
     {
-        int columns = 6;
+        int columns = 5;
         int rows = ownedCards.Count / columns;
         lastRow = ownedCards.Count % columns;
         cardWidth = cardTemplate.GetComponent<SpriteRenderer>().bounds.size.x;
@@ -39,9 +40,11 @@ public class DeckBuildDisplay : MonoBehaviour
                 xDis = ((stepHorizontal + cardWidth) * j);
                 yDis = ((stepVertical + cardHeight) * i);
                 Vector3 newPos = new Vector3(startPos.x + xDis, startPos.y - yDis, startPos.z);
-                GameObject card = Instantiate(cardTemplate, newPos, Quaternion.identity);
+                GameObject card = Instantiate(cardTemplate, newPos, Quaternion.identity, transform.parent);
                 card.GetComponent<CardDisplay>().card = ownedCards[counter];
                 counter++;
+                card.transform.localScale = newScale;
+                card.GetComponent<SpriteRenderer>().sortingOrder = 0;
             }
         }
         if (lastRow != 0)
@@ -51,8 +54,10 @@ public class DeckBuildDisplay : MonoBehaviour
             {
                 xDis = ((stepHorizontal + cardWidth) * i);
                 Vector3 newPos = new Vector3(startPos.x + xDis, startPos.y - yDis, startPos.z);
-                GameObject card = Instantiate(cardTemplate, newPos, Quaternion.identity);
-                card.GetComponent<CardDisplay>().card = ownedCards[ownedCards.Count - lastRow + i];
+                GameObject card = Instantiate(cardTemplate, newPos, Quaternion.identity, transform.parent);
+                card.GetComponent<CardDisplay>().card = Instantiate(ownedCards[ownedCards.Count - lastRow + i]);
+                card.transform.localScale = newScale;
+                card.GetComponent<SpriteRenderer>().sortingOrder = 0;
             }
         }
     }

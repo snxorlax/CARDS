@@ -10,15 +10,18 @@ public class HoverBehavior : MonoBehaviour
     public Vector3 originalScale;
     public Color newColor;
     public float alpha;
-    private void Start()
+    private void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
         cardTransform = GetComponent<Transform>();
-        originalScale = cardTransform.localScale;
         originalColor = renderer.color;
         newColor = originalColor;
         newColor.a *= alpha;
 
+    }
+    private void Start()
+    {
+        originalScale = cardTransform.localScale;
     }
     private void OnMouseEnter()
     {
