@@ -45,6 +45,7 @@ public class DeckBuildDisplay : MonoBehaviour
                 counter++;
                 card.transform.localScale = newScale;
                 card.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                card.GetComponent<CardDisplay>().card.status = "deckBuild";
             }
         }
         if (lastRow != 0)
@@ -58,6 +59,7 @@ public class DeckBuildDisplay : MonoBehaviour
                 card.GetComponent<CardDisplay>().card = Instantiate(ownedCards[ownedCards.Count - lastRow + i]);
                 card.transform.localScale = newScale;
                 card.GetComponent<SpriteRenderer>().sortingOrder = 0;
+                card.GetComponent<CardDisplay>().card.status = "deckBuild";
             }
         }
     }

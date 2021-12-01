@@ -15,7 +15,10 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        //Debug.Log("Pointer Down");
+        if (GetComponent<CardDisplay>().card.status == "deckBuild")
+        {
+            Debug.Log("Added to Deck");
+        }    
     }
     public void OnBeginDrag(PointerEventData pointerEventData)
     {
@@ -29,7 +32,7 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     public void OnDrag(PointerEventData pointerEventData)
     {
-        if (pointerEventData.pointerDrag != null && pointerEventData.pointerDrag.GetComponent<CardStatus>().status == "inHand")
+        if (pointerEventData.pointerDrag != null && pointerEventData.pointerDrag.GetComponent<CardDisplay>().card.status == "inHand")
         {
             Vector2 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(newPos.x, newPos.y, 80);
