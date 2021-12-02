@@ -5,6 +5,7 @@ using UnityEngine;
 public class HandDisplay : MonoBehaviour
 {
     public List<Card> hand;
+    public Player player;
 
     //Hand Spacing
     public float posOffset;
@@ -32,6 +33,8 @@ public class HandDisplay : MonoBehaviour
             newPos.z = 80;
             Instantiate(card, newPos, Quaternion.Euler(0, 0, i * tilt) , transform);
             card.GetComponent<CardDisplay>().card.status = "inHand";
+            card.GetComponent<CardDisplay>().card.player = player;
+
         }
     }
 

@@ -6,18 +6,27 @@ using UnityEngine.EventSystems;
 public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public GameObject dragged;
+    public GameObject deckList;
     public BoxCollider2D collider;
     public CanvasGroup canvasGroup;
+    public Card card;
     private void Awake()
     {
         collider = GetComponent<BoxCollider2D>();
         canvasGroup = GetComponent<CanvasGroup>();
+        deckList = GameObject.Find("DeckList");
+    }
+    private void Start()
+    {
+        card = GetComponent<CardDisplay>().card;
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
-        if (GetComponent<CardDisplay>().card.status == "deckBuild")
+        if (card.status == "deckBuild")
         {
-            Debug.Log("Added to Deck");
+            card.player.deck.Add(card);
+            deckList.GetComponent<DeckListDisplay>().DisplayDeckList();
+
         }    
     }
     public void OnBeginDrag(PointerEventData pointerEventData)

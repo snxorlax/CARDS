@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class DeckBuildDisplay : MonoBehaviour
 {
+    public Player player;
     public List<Card> ownedCards;
+    public List<Card> deckList;
     public GameObject cardTemplate;
 
     //spacing variables
@@ -42,6 +44,7 @@ public class DeckBuildDisplay : MonoBehaviour
                 Vector3 newPos = new Vector3(startPos.x + xDis, startPos.y - yDis, startPos.z);
                 GameObject card = Instantiate(cardTemplate, newPos, Quaternion.identity, transform.parent);
                 card.GetComponent<CardDisplay>().card = ownedCards[counter];
+                card.GetComponent<CardDisplay>().card.player = player;
                 counter++;
                 card.transform.localScale = newScale;
                 card.GetComponent<SpriteRenderer>().sortingOrder = 0;
