@@ -20,6 +20,7 @@ public class DeckListDisplay : MonoBehaviour
         text.text = "";
         foreach (Card c in deckList)
         {
+            Debug.Log(c.cardName);
             text.text = string.Concat(text.text, c.cardName + "\n");
         }
     }
