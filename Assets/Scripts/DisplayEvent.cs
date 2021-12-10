@@ -3,24 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class EndTurn : MonoBehaviour
+public class DisplayEvent : MonoBehaviour
 {
-    public GameObject endText;
+    public GameObject eventText;
     public Vector3 originalScale;
     public Color originalColor;
     public TextMeshProUGUI text;
 
     private void Start()
     {
+        text = eventText.GetComponent<TextMeshProUGUI>();
         originalColor = text.color;
-        originalScale = endText.transform.localScale;
+        originalScale = eventText.transform.localScale;
+        GameManager.GameStarted += () => EventText("Game Started");
+        GameManager.OnTurnStarted += () => EventText("Turn Started");
+        GameManager.OnTurnEnded += () => EventText("Turn Ended");
+
     }
-    public void PassTurn()
+    public void EventText(string text)
     {
-        
-        endText.SetActive(true);
+
+        eventText.transform.localScale = originalScale;
+        eventText.SetActive(true);
+        ChangeEventText(text);
         StartCoroutine(AnimateText());
-        endText.transform.localScale = originalScale;
 
     }
 
@@ -29,7 +35,7 @@ public class EndTurn : MonoBehaviour
         float a = originalColor.a;
         for (int i = 0; i < 120; i++)
         {
-            endText.transform.localScale *= 1.004f;
+            eventText.transform.localScale *= 1.004f;
             if (a >= 1)
             {
                 a -= .02f;
@@ -43,9 +49,13 @@ public class EndTurn : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1.1f);
-        endText.SetActive(false);
+        eventText.SetActive(false);
 
 
+    }
+    public void ChangeEventText(string newEventText)
+    {
+        text.text = newEventText;
     }
 
 

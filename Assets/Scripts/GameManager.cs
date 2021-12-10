@@ -7,39 +7,46 @@ public class GameManager : MonoBehaviour
 {
     // Game Start Delegate + Event
     public delegate void GameStartEventHandler();
-    public event GameStartEventHandler GameStarted;
+    public static event GameStartEventHandler GameStarted;
 
     // Turn Start/End Delegate + Event
 
-    public delegate void TurnStartEventHandler();
-    public event TurnStartEventHandler TurnStarted;
+    public delegate void TurnStart();
+    public static event TurnStart OnTurnStarted;
 
-    public delegate void TurnEndEventHandler();
-    public event TurnEndEventHandler TurnEnded;
+    public delegate void TurnEnd();
+    public static event TurnEnd OnTurnEnded;
 
 
 
+    //Starts the game when game loads
     public void Start()
     {
         StartGame();
     }
+    //Starts the game
     public void StartGame()
     {
         OnGameStarted();
     }
 
+    //Start a turn when the game starts
     public virtual void OnGameStarted()
     {
         GameStarted?.Invoke();
+        Invoke("StartTurn", 2f);
     }
 
-    public virtual void OnTurnStarted()
+    //Trigger the first phase of a turn
+    public virtual void StartTurn()
     {
-        TurnStarted?.Invoke();
+        OnTurnStarted?.Invoke();
     }
-
-    public virtual void OnTurnEnded()
+    //Trigger the end of turn
+    public virtual void EndTurn()
     {
-        TurnEnded?.Invoke();
+        OnTurnEnded?.Invoke();
     }    
+
+
 }

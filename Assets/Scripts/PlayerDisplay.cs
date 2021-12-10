@@ -12,7 +12,7 @@ public class PlayerDisplay : MonoBehaviour
     public void Awake()
     {
         gameManager = GameObject.Find("GameManager");
-        gameManager.GetComponent<GameManager>().GameStarted += LoadDeck;
+        GameManager.GameStarted += LoadDeck;
     }
     void Update()
     {

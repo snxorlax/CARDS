@@ -17,8 +17,7 @@ public class HandDisplay : MonoBehaviour
 
     private void Awake()
     {
-        gameManager = GameObject.Find("GameManager");
-        gameManager.GetComponent<GameManager>().GameStarted += LoadHand;
+        GameManager.GameStarted += LoadHand;
     }
 
 
