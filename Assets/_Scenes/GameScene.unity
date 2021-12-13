@@ -1147,6 +1147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: []
+  playerManager: {fileID: 1976701573}
   player: {fileID: 11400000, guid: c1e5dc076e3823f48bd5ee7cdf8d8f7d, type: 2}
   posOffset: 1.4
   rotOffset: 20
@@ -1329,6 +1330,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1976701574}
+  - component: {fileID: 1976701576}
+  - component: {fileID: 1976701575}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -1350,6 +1353,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1976701575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976701573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06d4c67e473415e4bb47791276120026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 11400000, guid: c1e5dc076e3823f48bd5ee7cdf8d8f7d, type: 2}
+  deck: []
+  hand: []
+  handSize: 5
+--- !u!114 &1976701576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976701573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 596bab361d2b8c146b16d528c46b5ad4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  deck: []
+  hand: []
 --- !u!1 &2053801622
 GameObject:
   m_ObjectHideFlags: 0

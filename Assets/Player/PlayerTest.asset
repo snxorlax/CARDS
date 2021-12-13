@@ -14,14 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 30
   mana: 5
-  deck: []
-  hand:
-  - {fileID: 11400000, guid: 7b7b45741ee883a488126ca31416c0ee, type: 2}
+  ownedCards: []
+  deck:
+  - {fileID: 11400000, guid: 0c7e07f171c521441a201c33cc3b1868, type: 2}
   - {fileID: 11400000, guid: 9f920d73d83650042ab461f858e47575, type: 2}
-  - {fileID: 11400000, guid: 7b7b45741ee883a488126ca31416c0ee, type: 2}
+  - {fileID: 11400000, guid: 0c7e07f171c521441a201c33cc3b1868, type: 2}
   - {fileID: 11400000, guid: 9f920d73d83650042ab461f858e47575, type: 2}
-  - {fileID: 11400000, guid: 7b7b45741ee883a488126ca31416c0ee, type: 2}
+  - {fileID: 11400000, guid: 9f920d73d83650042ab461f858e47575, type: 2}
+  - {fileID: 11400000, guid: 9f920d73d83650042ab461f858e47575, type: 2}
   - {fileID: 11400000, guid: 0c7e07f171c521441a201c33cc3b1868, type: 2}
   - {fileID: 11400000, guid: 0c7e07f171c521441a201c33cc3b1868, type: 2}
+  - {fileID: 11400000, guid: 9f920d73d83650042ab461f858e47575, type: 2}
   - {fileID: 11400000, guid: 0c7e07f171c521441a201c33cc3b1868, type: 2}
-  - {fileID: 11400000, guid: 0c7e07f171c521441a201c33cc3b1868, type: 2}
+  hand: []

@@ -18,8 +18,8 @@ public class DisplayEvent : MonoBehaviour
         originalScale = eventText.transform.localScale;
         GameManager.GameStarted += () => EventText("Game Started");
         GameManager.OnTurnStarted += () => EventText("Turn Started");
+        GameManager.OnDrawStarted += () => EventText("Draw");
         GameManager.OnTurnEnded += () => EventText("Turn Ended");
-
     }
     public void EventText(string text)
     {

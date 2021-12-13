@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public delegate void TurnStart();
     public static event TurnStart OnTurnStarted;
 
+    //Draw Phase Delegate +Event
+    public delegate void StartDrawPhase();
+    public static event StartDrawPhase OnDrawStarted;
+
     public delegate void TurnEnd();
     public static event TurnEnd OnTurnEnded;
 
@@ -41,6 +45,12 @@ public class GameManager : MonoBehaviour
     public virtual void StartTurn()
     {
         OnTurnStarted?.Invoke();
+        Invoke("DrawPhase", 2f);
+    }
+    //Trigger draw phase
+    public virtual void DrawPhase()
+    {
+        OnDrawStarted?.Invoke();
     }
     //Trigger the end of turn
     public virtual void EndTurn()

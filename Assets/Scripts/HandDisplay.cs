@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class HandDisplay : MonoBehaviour
 {
     public List<Card> hand;
+    public GameObject playerManager;
     public Player player;
 
     //Hand Spacing
@@ -14,15 +15,18 @@ public class HandDisplay : MonoBehaviour
 
     public GameObject card;
 
-
-    private void OnEnable()
+    private void Awake()
     {
-        GameManager.OnTurnStarted += LoadHand;
+        //player = playerManager.GetComponent<PlayerManager>().player;
     }
-    private void OnDisable()
-    {
-        GameManager.OnTurnStarted -= LoadHand;
-    }
+    //private void OnEnable()
+    //{
+    //    GameManager.OnTurnStarted += LoadHand;
+    //}
+    //private void OnDisable()
+    //{
+    //    GameManager.OnTurnStarted -= LoadHand;
+    //}
 
     //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     //{
@@ -48,8 +52,9 @@ public class HandDisplay : MonoBehaviour
 
     public void LoadHand()
     {
+        player = playerManager.GetComponent<PlayerManager>().player;
         //hand.AddRange(transform.parent.gameObject.GetComponent<PlayerDisplay>().player.hand);
-        List<Card> cardList = transform.parent.gameObject.GetComponent<PlayerDisplay>().player.hand;
+        List<Card> cardList = player.hand;
         for (int i = 0; i <cardList.Count; i++)
         {
             hand.Add(Instantiate(cardList[i]));
