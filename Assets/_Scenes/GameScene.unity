@@ -468,6 +468,7 @@ GameObject:
   - component: {fileID: 767064696}
   - component: {fileID: 767064695}
   - component: {fileID: 767064694}
+  - component: {fileID: 767064697}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -559,6 +560,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
+--- !u!114 &767064697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767064692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6a289cfb8d233d4d8baa53218778273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1165919342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,7 +1150,6 @@ MonoBehaviour:
   player: {fileID: 11400000, guid: c1e5dc076e3823f48bd5ee7cdf8d8f7d, type: 2}
   posOffset: 1.4
   rotOffset: 20
-  gameManager: {fileID: 0}
   card: {fileID: 9182402048658787460, guid: b6fb880a743c8384bad472639852d053, type: 3}
 --- !u!4 &1834210717 stripped
 Transform:
@@ -1318,7 +1330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1976701574}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

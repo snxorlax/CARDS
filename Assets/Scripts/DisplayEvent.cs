@@ -10,8 +10,9 @@ public class DisplayEvent : MonoBehaviour
     public Color originalColor;
     public TextMeshProUGUI text;
 
-    private void Start()
+    private void Awake()
     {
+        eventText = transform.GetChild(0).gameObject;
         text = eventText.GetComponent<TextMeshProUGUI>();
         originalColor = text.color;
         originalScale = eventText.transform.localScale;

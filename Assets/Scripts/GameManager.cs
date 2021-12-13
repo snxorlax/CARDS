@@ -48,5 +48,10 @@ public class GameManager : MonoBehaviour
         OnTurnEnded?.Invoke();
     }    
 
+    public void AllCoroutines()
+    {
+
+    }
+
 
 }

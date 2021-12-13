@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HandDisplay : MonoBehaviour
 {
@@ -11,14 +12,22 @@ public class HandDisplay : MonoBehaviour
     public float posOffset;
     public float rotOffset;
 
-    public GameObject gameManager;
     public GameObject card;
 
 
-    private void Awake()
+    private void OnEnable()
     {
-        GameManager.GameStarted += LoadHand;
+        GameManager.OnTurnStarted += LoadHand;
     }
+    private void OnDisable()
+    {
+        GameManager.OnTurnStarted -= LoadHand;
+    }
+
+    //private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    LoadHand();
+    //}
 
 
     public void DisplayHand()
@@ -30,7 +39,7 @@ public class HandDisplay : MonoBehaviour
             Vector3 newPos = transform.position;
             newPos.x += (i * posOffset);
             newPos.z = 80;
-            Instantiate(card, newPos, Quaternion.Euler(0, 0, i * tilt) , transform);
+            var newCard = Instantiate(card, newPos, Quaternion.Euler(0, 0, i * tilt) , transform);
             card.GetComponent<CardDisplay>().card.status = "inHand";
             card.GetComponent<CardDisplay>().card.player = player;
 
