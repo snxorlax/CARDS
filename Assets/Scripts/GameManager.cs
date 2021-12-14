@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
     public delegate void TurnStart();
     public static event TurnStart OnTurnStarted;
 
-    //Draw Phase Delegate +Event
+    //Draw Phase Delegate + Event
     public delegate void StartDrawPhase();
     public static event StartDrawPhase OnDrawStarted;
+
+    //Main Phase Delegate + Event
+    public delegate void StartMainPhase();
+    public static event StartMainPhase OnMainStarted;
 
     public delegate void TurnEnd();
     public static event TurnEnd OnTurnEnded;
@@ -38,24 +42,31 @@ public class GameManager : MonoBehaviour
     public virtual void OnGameStarted()
     {
         GameStarted?.Invoke();
-        Invoke("StartTurn", 2f);
+        Invoke("StartTurn", 1.5f);
     }
 
     //Trigger the first phase of a turn
     public virtual void StartTurn()
     {
         OnTurnStarted?.Invoke();
-        Invoke("DrawPhase", 2f);
+        Invoke("DrawPhase", 1.5f);
     }
     //Trigger draw phase
     public virtual void DrawPhase()
     {
         OnDrawStarted?.Invoke();
+        Invoke("MainPhase", 1.5f);
+    }
+    //Trigger main phase
+    public virtual void MainPhase()
+    {
+        OnMainStarted?.Invoke();
     }
     //Trigger the end of turn
     public virtual void EndTurn()
     {
         OnTurnEnded?.Invoke();
+
     }    
 
     public void AllCoroutines()

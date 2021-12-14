@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     public Player player;
     public List<Card> deck;
     public List<Card> hand;
+    // list of cards in play controlled by player
+    public List<Card> play;
 
     public int handSize;
     //public void OnEnable()
@@ -21,18 +23,25 @@ public class PlayerManager : MonoBehaviour
         player = Instantiate(player, transform);
         deck = player.deck;
         hand = player.hand;
-        LoadPlayer();
+        play = player.play;
+        LoadPlayerHand();
+        GameManager.OnDrawStarted += DrawCard;
     }
 
-    private void LoadPlayer()
+    private void LoadPlayerHand()
     {
         for (int i = 0; i < handSize; i++)
         {
-            Debug.Log("Player Loaded");
-            int cardNo = Random.Range(0, deck.Count - 1);
-            hand.Add(deck[cardNo]);
-            deck.RemoveAt(cardNo);
+            DrawCard();
         }
-        handDisplay.GetComponent<HandDisplay>().LoadHand();
+        //handDisplay.GetComponent<HandDisplay>().LoadHand();
+    }
+
+    private void DrawCard()
+    {
+        int cardNo = Random.Range(0, deck.Count - 1);
+        hand.Add(deck[cardNo]);
+        handDisplay.GetComponent<HandDisplay>().DrawCard(deck[cardNo]);
+        deck.RemoveAt(cardNo);
     }
 }

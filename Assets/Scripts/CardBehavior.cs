@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    public bool interactable = false;
     public GameObject dragged;
     public GameObject deckList;
     public BoxCollider2D collider;
@@ -19,6 +20,8 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     private void Start()
     {
         card = GetComponent<CardDisplay>().card;
+        GameManager.OnMainStarted += MakeInteractable;
+        GameManager.OnTurnEnded += MakeUninteractable;
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
@@ -41,7 +44,7 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
 
     public void OnDrag(PointerEventData pointerEventData)
     {
-        if (pointerEventData.pointerDrag != null && pointerEventData.pointerDrag.GetComponent<CardDisplay>().card.status == "inHand")
+        if (pointerEventData.pointerDrag != null && pointerEventData.pointerDrag.GetComponent<CardDisplay>().card.status == "inHand" && interactable == true)
         {
             Vector2 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(newPos.x, newPos.y, 80);
@@ -51,5 +54,13 @@ public class CardBehavior : MonoBehaviour, IPointerDownHandler, IBeginDragHandle
     public void EnableRaycast()
     {
         canvasGroup.blocksRaycasts = true;
+    }
+    public void MakeInteractable()
+    {
+        interactable = true;
+    }
+    public void MakeUninteractable()
+    {
+        interactable = false;
     }
 }

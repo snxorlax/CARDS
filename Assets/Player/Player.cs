@@ -10,4 +10,6 @@ public class Player : ScriptableObject
     public List<Card> ownedCards;
     public List<Card> deck;
     public List<Card> hand = new List<Card>();
+    //cards in play controlled by player
+    public List<Card> play;
 }

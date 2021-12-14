@@ -19,6 +19,7 @@ public class DisplayEvent : MonoBehaviour
         GameManager.GameStarted += () => EventText("Game Started");
         GameManager.OnTurnStarted += () => EventText("Turn Started");
         GameManager.OnDrawStarted += () => EventText("Draw");
+        GameManager.OnMainStarted += () => EventText("Main Phase");
         GameManager.OnTurnEnded += () => EventText("Turn Ended");
     }
     public void EventText(string text)

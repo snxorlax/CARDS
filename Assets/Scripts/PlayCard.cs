@@ -5,6 +5,10 @@ using UnityEngine.EventSystems;
 
 public class PlayCard : MonoBehaviour
 {
+    public GameObject playerManager;
+    public Player player;
+    //handdisplay component
+    public GameObject handDisplay;
     //color fields to indicate before playing cards
     public Color original;
     public Color hoverColor;
@@ -34,6 +38,8 @@ public class PlayCard : MonoBehaviour
     public bool dragRight;
     private void Start()
     {
+        //player = playerManager.GetComponent<PlayerManager>().player;
+        //inPlay = player.play;
         //distance between cards in play
         unitStep = .04f;
         unitObjects = new List<GameObject>();
@@ -268,11 +274,17 @@ public class PlayCard : MonoBehaviour
 
     public void ChangeStatus(GameObject card)
     {
-
-        card.GetComponent<CardStatus>().status = "inPlay";
-        card.GetComponent<CardDisplay>().card.status = "inPlay";
-        inPlay.Add(card.GetComponent<CardDisplay>().card);
-        card.transform.parent.GetComponent<HandDisplay>().hand.Remove(card.GetComponent<CardDisplay>().card);
+        
+        if (card.GetComponent<CardStatus>().status == "inHand")
+        {
+            card.GetComponent<CardStatus>().status = "inPlay";
+            card.GetComponent<CardDisplay>().card.status = "inPlay";
+            inPlay.Add(card.GetComponent<CardDisplay>().card);
+            //remove cardObject and card from relevant lists
+            card.transform.parent.GetComponent<HandDisplay>().hand.Remove(card.GetComponent<CardDisplay>().card);
+            card.transform.parent.GetComponent<HandDisplay>().handObjects.Remove(card);
+            handDisplay.GetComponent<HandDisplay>().DisplayHand();
+        }
     }
 
     public void FlipCard(GameObject card)
