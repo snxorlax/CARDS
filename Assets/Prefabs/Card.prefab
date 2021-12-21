@@ -95,6 +95,8 @@ GameObject:
   - component: {fileID: 4037131056884017123}
   - component: {fileID: 5262920860390377837}
   - component: {fileID: -4216473486738468064}
+  - component: {fileID: -3259296416877673907}
+  - component: {fileID: -2227301436321196529}
   m_Layer: 5
   m_Name: Card
   m_TagString: PlayerCard
@@ -182,7 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbe535e28971a34f9545afc09f57845, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 11400000, guid: 7b7b45741ee883a488126ca31416c0ee, type: 2}
+  card: {fileID: 0}
   manaCost: {fileID: 0}
   attack: {fileID: 0}
   hp: {fileID: 0}
@@ -244,9 +246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9edd1f62d8955043a8bba76f4f72b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: 0
   dragged: {fileID: 0}
+  deckList: {fileID: 0}
   collider: {fileID: 0}
   canvasGroup: {fileID: 0}
+  card: {fileID: 0}
 --- !u!114 &5262920860390377837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,6 +277,52 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-3259296416877673907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182402048658787460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: b6fb880a743c8384bad472639852d053
+  hasSpawned: 0
+--- !u!114 &-2227301436321196529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9182402048658787460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  sendInterval: 0.05
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!1 &9182402049108974877
 GameObject:
   m_ObjectHideFlags: 0

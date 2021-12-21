@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 // Script to start game, manage turns, 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     // Game Start Delegate + Event
     public delegate void GameStartEventHandler();
@@ -28,8 +29,10 @@ public class GameManager : MonoBehaviour
 
 
     //Starts the game when game loads
-    public void Start()
+    public override void OnStartClient()
     {
+        base.OnStartClient();
+
         StartGame();
     }
     //Starts the game

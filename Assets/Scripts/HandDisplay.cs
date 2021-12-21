@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
-public class HandDisplay : MonoBehaviour
+public class HandDisplay : NetworkBehaviour
 {
     public List<GameObject> handObjects;
     public List<Card> hand;
@@ -42,7 +43,8 @@ public class HandDisplay : MonoBehaviour
         }
         return positions;
     }
-    public void DrawCard(Card newCard)
+    [Command]
+    public void CmdDrawCard(Card newCard)
     {
         Card cardData = Instantiate(newCard);
         hand.Add(cardData);

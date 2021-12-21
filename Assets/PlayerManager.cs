@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     // send information to handDisplay to display hand which is managed here
     public GameObject handDisplay;
@@ -18,17 +19,18 @@ public class PlayerManager : MonoBehaviour
     //{
     //    GameManager.OnTurnStarted += LoadPlayer;
     //}
-    private void Start()
+    public override void OnStartClient()
     {
         player = Instantiate(player, transform);
         deck = player.deck;
         hand = player.hand;
         play = player.play;
-        LoadPlayerHand();
+        CmdLoadPlayerHand();
         GameManager.OnDrawStarted += DrawCard;
     }
 
-    private void LoadPlayerHand()
+    [Command]
+    private void CmdLoadPlayerHand()
     {
         for (int i = 0; i < handSize; i++)
         {
@@ -41,7 +43,7 @@ public class PlayerManager : MonoBehaviour
     {
         int cardNo = Random.Range(0, deck.Count - 1);
         hand.Add(deck[cardNo]);
-        handDisplay.GetComponent<HandDisplay>().DrawCard(deck[cardNo]);
+        handDisplay.GetComponent<HandDisplay>().CmdDrawCard(deck[cardNo]);
         deck.RemoveAt(cardNo);
     }
 }
